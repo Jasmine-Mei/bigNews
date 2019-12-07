@@ -55,4 +55,31 @@
         </div>
     </div>
 </body>
+<script src="../js/upload.js"></script>
+<script>
+    $(function () {
+        $.ajax({
+            type: 'get',
+            url: backstage.getInfo,
+            headers: {
+                'Authorization': window.localStorage.getItem('token')
+            },
+            success(res) {
+                $('.user_info img,.user_center_link img').attr('src', res.data.userPic);
+                $('.user_info span').html('欢迎&nbsp;&nbsp;' + res.data.nickname);
+            }
+        });
+
+
+        // 给退出按钮注册退出登录事件
+        $('.logout').on('click', function () {
+            // 清除本地存储的token
+            localStorage.removeItem('token');
+            // 跳转会login页面
+            location.href = './login.html';
+        });
+
+    })
+</script>
+
 </html>

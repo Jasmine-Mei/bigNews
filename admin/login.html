@@ -43,28 +43,68 @@
   <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
     Launch
   </button>
-  
+
   <!-- Modal -->
   <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title">温馨提示</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+        <div class="modal-header">
+          <h5 class="modal-title">温馨提示</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
         <div class="modal-body">
           <div class="container-fluid">
             Add rows here
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-su" data-dismiss="modal">确认</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal">确认</button>
         </div>
       </div>
     </div>
   </div>
 </body>
+<script src="../js/upload.js"></script>
+<script>
+  $(function () {
+    $('.input_sub').on('click', function () {
+      let userName = $('.input_txt').val().trim();
+      let userPwd = $('.input_pass').val().trim();
+
+      if (userName === '' || userPwd === '') {
+        // 修改模态框文本内容
+        $('.container-fluid').text('用户名或密码不能为空');
+        $('#modelId').modal();
+        return;
+      }
+
+      $.ajax({
+        type: 'post',
+        url: backstage.login,
+        data: {
+          username: userName,
+          password: userPwd
+        },
+        dataType: 'json',
+        success(res) {
+          $('.container-fluid').text(res.msg);
+          $('#modelId').modal();
+          if (res.code === 200) {
+            // 登陆成功 存入本地
+            localStorage.setItem('token', res.token);
+
+            $('#modelId').on('hidden.bs.modal', function (e) {
+              window.location.href = './index.html';
+            })
+          }
+        }
+
+      })
+
+    })
+  })
+</script>
 
 </html>
