@@ -94,7 +94,6 @@
           if (res.code === 200) {
             // 登陆成功 存入本地
             localStorage.setItem('token', res.token);
-
             $('#modelId').on('hidden.bs.modal', function (e) {
               window.location.href = './index.html';
             })

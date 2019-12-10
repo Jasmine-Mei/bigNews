@@ -7,7 +7,7 @@
         // 获取用户详情
         getDetail: 'http://localhost:8080/api/v1/admin/user/detail',
         // 编辑用户信息
-        edit_user: 'http://localhost:8080/api/v1/admin/user/edit',
+        editUser: 'http://localhost:8080/api/v1/admin/user/edit',
         // 所有文章类别
         categoryList: 'http://localhost:8080/api/v1/admin/category/list',
         // 新增文章类别
