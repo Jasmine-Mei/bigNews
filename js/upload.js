@@ -19,7 +19,7 @@
         // 删除文章类别
         categoryDel: 'http://localhost:8080/api/v1/admin/category/delete',
         // 文章搜索
-        articleSearch: 'http://localhost:8080/api/v1/admin/article/query',
+        articleQuery: 'http://localhost:8080/api/v1/admin/article/query',
         // 发布文章
         articlePush: 'http://localhost:8080/api/v1/admin/article/publish',
         // 根据id获取文章信息
